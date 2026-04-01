@@ -53,14 +53,13 @@ Built with **EfficientNet-V2-S** (transfer learning), **5-fold cross-validation*
 
 ```
 ├── hemorrage_classifier.py       # Phase 1: Dataset, EDA, preprocessing
-├── hemorrage2.py           # Phase 2: Training, evaluation, experiments
+├── hemorrage_etapa2.py           # Phase 2: Training, evaluation, experiments
 ├── screenshots/                  # Sample outputs
-│   ├── class_distribution.png
-│   ├── confusion_matrices.png
-│   ├── roc_curves.png
-│   ├── pixel_stats.png
+│   ├── ct_scan_samples.png
 │   ├── preprocessing_techniques.png
-│   └── experiments_comparison.png
+│   ├── kfold_baseline_results.png
+│   ├── class_distribution.png
+│   └── pixel_statistics.png
 └── outputs/                      # Generated after running (not in repo)
     ├── plots/
     ├── fold*_model.pth
@@ -71,20 +70,20 @@ Built with **EfficientNet-V2-S** (transfer learning), **5-fold cross-validation*
 
 ## Sample Outputs
 
-### Class Distribution (Train Set)
-![Class Distribution](screenshots/class_distribution.png)
-
-### Confusion Matrices (Per-Class)
-![Confusion Matrices](screenshots/confusion_matrices.png)
-
-### ROC Curves
-![ROC Curves](screenshots/roc_curves.png)
-
-### Pixel Statistics
-![Pixel Stats](screenshots/pixel_stats.png)
+### CT Scan Samples (Epidural Hemorrhage)
+![CT Samples](screenshots/ct_scan_samples.png)
 
 ### Image Preprocessing Techniques
 ![Preprocessing](screenshots/preprocessing_techniques.png)
+
+### 5-Fold Cross-Validation Results (Baseline)
+![K-Fold Results](screenshots/kfold_baseline_results.png)
+
+### Class Distribution (Train Set)
+![Class Distribution](screenshots/class_distribution.png)
+
+### Pixel Value Statistics
+![Pixel Stats](screenshots/pixel_statistics.png)
 
 ---
 
@@ -99,7 +98,7 @@ Phase 1 — Data Analysis (hemorrage_classifier.py)
   5. Integrity Check     → Verify image dimensions, channels, pixel ranges
   6. Preprocessing       → Compare Ben Graham, CLAHE, Sobel, Gaussian Blur
 
-Phase 2 — Training & Evaluation (hemorrage2.py)
+Phase 2 — Training & Evaluation (hemorrage_etapa2.py)
   1. Model               → EfficientNet-V2-S + custom classifier (512→6)
   2. K-Fold Training     → 5-fold stratified CV with mixed precision
   3. Balancing           → Compare baseline, pos_weight, oversampling
@@ -130,7 +129,7 @@ Requires the RSNA dataset extracted to `archive/` with `subdataset_train.csv`, `
 ### Phase 2 — Training
 
 ```bash
-python hemorrage2.py
+python hemorrage_etapa2.py
 ```
 
 Designed for Google Colab with GPU. Modify `Config` class paths if running locally. Requires CUDA-enabled GPU.
